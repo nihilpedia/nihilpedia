@@ -1,2 +1,3 @@
-export * from './getMdxPageFile';
-export * from './getMdxAllPage';
+export * from './getAllMdx';
+export * from './getAllMdxCategories';
+export * from './getMdx';

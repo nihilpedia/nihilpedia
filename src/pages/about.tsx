@@ -1,22 +1,21 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import { GetStaticProps } from 'next';
 import { MDXRemote } from 'next-mdx-remote';
-import AppLayout from '@/layouts/AppLayout';
 import { useSiteMeta } from '@/hooks';
+import AppLayout from '@/layouts/AppLayout';
 import { getMdx } from '@/utils/mdx';
 import { IPage } from '@/types';
 import { DocBox, MdxComponents } from '@/components/Content';
 import { getTimeString } from '@/utils';
 
-const IndexPage = ({ source, frontMatter, }: IPage) => {
-  const IndexPageStyle = css`
+const AboutPage = ({ source, frontMatter, }: IPage) => {
+  const AboutPageStyle = css`
     margin-bottom: 10px;
   `;
 
   const meta = useSiteMeta({
-    title: '홈',
-    url: '/',
+    title: '소개',
+    url: '/about',
   });
 
   const updateTime = getTimeString(frontMatter.updatedAt as number);
@@ -24,7 +23,7 @@ const IndexPage = ({ source, frontMatter, }: IPage) => {
   return (
     <>
       <AppLayout meta={meta}>
-        <div id='index-page' css={IndexPageStyle}>
+        <div id='about-page' css={AboutPageStyle}>
           <DocBox
             title={frontMatter.title}
             updateTime={updateTime}
@@ -39,8 +38,8 @@ const IndexPage = ({ source, frontMatter, }: IPage) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
-  const doc = await getMdx('니힐라 위키');
+export const getStaticProps = async () => {
+  const doc = await getMdx('소개');
 
   return {
     props: {
@@ -49,4 +48,4 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-export default IndexPage;
+export default AboutPage;

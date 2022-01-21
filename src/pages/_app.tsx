@@ -1,6 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import { AppProps } from 'next/app';
+import { siteData } from '@/data/config.data';
 
 const App = ({ Component, pageProps, }: AppProps) => (
   <>
@@ -11,6 +12,9 @@ const App = ({ Component, pageProps, }: AppProps) => (
         name='viewport'
         content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0'
       />
+
+      <link rel='shortcut icon' type='image/x-icon' href={`${siteData.siteUrl}/favicon.ico`} />
+      <link rel='icon' type='image/x-icon' href={`${siteData.siteUrl}/favicon.ico`} />
 
       <link
         rel='stylesheet'
