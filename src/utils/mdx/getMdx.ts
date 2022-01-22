@@ -1,5 +1,5 @@
-import remarkGfm from 'remark-gfm';
 import { serialize } from 'next-mdx-remote/serialize';
+import remarkUnwrapImages from 'remark-unwrap-images';
 import { getAllMdxCategories } from '@/utils/mdx';
 import { IPage } from '@/types';
 
@@ -15,7 +15,8 @@ export const getMdx = async (name: string): Promise<IPage> => {
   const mdxSource = await serialize(content, {
     mdxOptions: {
       remarkPlugins: [
-        remarkGfm,
+        // @ts-ignore
+        remarkUnwrapImages,
       ],
       rehypePlugins: [],
     },

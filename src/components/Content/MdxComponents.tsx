@@ -2,7 +2,7 @@ import React from 'react';
 import {
   A,
   Bold,
-  Em, H, P, QBlock, Strong, Ul
+  Em, H, Image, P, QBlock, Strong, Ul
 } from '../docs';
 
 export const MdxComponents = {
@@ -16,6 +16,7 @@ export const MdxComponents = {
   a: (props) => (<A href={props.href}>{props.children}</A>),
   blockquote: (props) => (<QBlock {...props}>{props.children}</QBlock>),
   ul: (props) => (<Ul {...props}>{props.children}</Ul>),
+  img: (props) => (<Image {...props} />),
   P,
   Strong,
   Em,

@@ -73,8 +73,8 @@ export const A = ({
   return (
     <>
       {type === 'page' && (
-        <Link href={typeHref} passHref>
-          <a css={LinkStyle} className='page-link'>{children}</a>
+        <Link href='/page/[slug]' as={typeHref} passHref>
+          <a css={LinkStyle}>{children}</a>
         </Link>
       )}
       {type === 'toc' && (

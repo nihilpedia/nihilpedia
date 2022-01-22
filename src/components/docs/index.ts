@@ -6,3 +6,4 @@ export * from './Em';
 export * from './QBlock';
 export * from './Bold';
 export * from './Ul';
+export * from './Image';

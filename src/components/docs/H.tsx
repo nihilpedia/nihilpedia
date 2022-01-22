@@ -21,10 +21,6 @@ export const H = ({
         setStyle(css`
           font-weight: 900;
 
-          &:nth-of-type(1) {
-            margin-top: 0;
-          }
-
           & > span,
           & > a {
             font-size: 140%;

@@ -18,10 +18,6 @@ export const P = ({ children, mt = 20, mb = 20, }: IP) => {
     line-height: 1.5;
     color: #333333;
 
-    &:nth-last-of-type(1) {
-      margin-bottom: 0;
-    }
-
     @media all and (min-width: 1024px) {
       font-size: ${fontSizeStyle[3]};
     }

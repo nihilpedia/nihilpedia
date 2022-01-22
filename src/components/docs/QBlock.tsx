@@ -21,10 +21,6 @@ export const QBlock = ({
     border: 2px solid ${fontColorStyle.blue2}50;
     border-left: 20px solid ${fontColorStyle.blue2};
 
-    &:nth-last-of-type(1) {
-      margin-bottom: 0;
-    }
-
     & > div {
       &:nth-of-type(1) {
         padding-bottom: 20px;

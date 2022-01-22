@@ -22,8 +22,10 @@ export const style = () => {
                   }
 
                   & li {
-                    content: '\\f0da';
-                    font-weight: 900;
+                    &:before {
+                      content: '\\f0da';
+                      font-weight: 900;
+                    }
                   }
                 }
               }

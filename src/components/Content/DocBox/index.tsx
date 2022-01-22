@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/router';
+import { IoMdTime } from 'react-icons/io';
+import { FaUserCircle } from 'react-icons/fa';
 import { IH2 } from '@/types';
 import { generateToc } from '@/utils';
 import { Toc } from '../Toc';
@@ -19,7 +20,6 @@ export const DocBox = ({
 }: IDocBox) => {
   const [ toc, setToc, ] = useState<IH2[]>([]);
   const tocRef = useRef<HTMLDivElement>(null);
-  const router = useRouter();
 
   useEffect(() => {
     if (!error) {
@@ -30,7 +30,7 @@ export const DocBox = ({
     }
   }, [ title, ]);
 
-  const DocBoxStyle = style(mt, mb, error);
+  const DocBoxStyle = style(mt, mb);
 
   return (
     <>
@@ -39,11 +39,6 @@ export const DocBox = ({
           <h1 id='wiki-title'>
             <span>{title}</span>
           </h1>
-          {!error && (
-            <p className='update-date'>
-              <span>최근 수정 시각: {updateTime}</span>
-            </p>
-          )}
         </div>
         {toc.length !== 0 && (
           <Toc toc={toc} className='doc-box toc' />
@@ -51,10 +46,16 @@ export const DocBox = ({
         {
           error
             ? (
-              <div className='doc-box'>{children}</div>
+              <div className='doc-box content'>{children}</div>
             )
             : (
-              <div className='doc-box' ref={tocRef}>{children}</div>
+              <div className='doc-box content' ref={tocRef}>
+                <div className='update-date'>
+                  <span><IoMdTime />최근 수정 시각: {updateTime}</span>
+                </div>
+                {children}
+                <div className='author'><FaUserCircle />NIHILncunia</div>
+              </div>
             )
         }
       </div>

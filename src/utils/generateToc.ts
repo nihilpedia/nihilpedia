@@ -1,4 +1,3 @@
-import { siteData } from '@/data/config.data';
 import { IH2 } from '@/types';
 
 export const generateToc = (contents: HTMLDivElement, tocData: IH2[]) => {
@@ -15,17 +14,10 @@ export const generateToc = (contents: HTMLDivElement, tocData: IH2[]) => {
     let link: string;
 
     if (spanData.children.length !== 0) {
-      const linkData = spanData.children[0] as HTMLAnchorElement;
-      console.log(spanData.children);
-      console.log(linkData.href.includes(`${siteData.siteUrl}/`));
-      let linkString = linkData.href.replace(`${siteData.siteUrl}/`, '');
-      linkString += linkData.pathname;
-      link = decodeURI(linkString);
+      link = decodeURI(text.replace(' ', '_'));
     } else {
       link = '';
     }
-
-    console.log('link >> ', link);
 
     if (item.nodeName === 'H2') {
       tocData.push({

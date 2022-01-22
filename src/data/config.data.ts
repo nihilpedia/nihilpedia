@@ -7,7 +7,7 @@ export const siteData: IConfig = {
   siteType: 'website',
   siteUrl: process.env.NODE_ENV === 'development'
     ? 'http://localhost:3000'
-    : '',
-  siteImage: '',
+    : 'https://nihilpedia.github.io',
+  siteImage: '/images/site-image.png',
   siteVersion: 'v1.0.0',
 };
