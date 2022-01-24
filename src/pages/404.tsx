@@ -1,60 +1,46 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { css } from '@emotion/react';
-import { useRouter } from 'next/router';
+import { GetStaticProps } from 'next';
 import AppLayout from '@/layouts/AppLayout';
 import { useSiteMeta } from '@/hooks';
-import { DocBox } from '@/components/Content';
-import { P } from '@/components/docs';
+import { DocBox, ErrorBox } from '@/components/Content';
+import { getAllMdxCategories } from '@/utils/mdx';
 
-const NotPound404 = () => {
-  const [ pageName, setPageName, ] = useState('');
-  const [ isPage, setIsPage, ] = useState(true);
-  const router = useRouter();
+interface INotPoundPage {
+  docSlugs: string[];
+}
 
-  useEffect(() => {
-    if (router.asPath.includes('/page/')) {
-      const pageName = router.asPath.replace('/page/', '');
-
-      setPageName(decodeURI(pageName).replace('_', ' '));
-    } else {
-      setIsPage(false);
-    }
-  }, [ router.asPath, ]);
-
+const NotPound404 = ({ docSlugs, }: INotPoundPage) => {
   const NotPound404Style = css`
     margin-bottom: 10px;
   `;
 
   const meta = useSiteMeta({
-    title: '404',
+    title: '에러',
     url: '/404',
   });
 
   return (
     <>
-      <AppLayout meta={meta}>
+      <AppLayout meta={meta} docSlugs={docSlugs}>
         <div id='wiki-not-pound-page' css={NotPound404Style}>
-          <DocBox mt={10} mb={10} title='에러 404' error>
-            <P mt={0} mb={0}>
-              {
-                isPage
-                  ? (
-                    <>
-                      <span className='page-name'>{pageName}</span> 페이지가 존재하지 않습니다.
-                    </>
-                  )
-                  : (
-                    <>
-                      페이지가 존재하지 않습니다.
-                    </>
-                  )
-              }
-            </P>
+          <DocBox error>
+            <ErrorBox />
           </DocBox>
         </div>
       </AppLayout>
     </>
   );
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  const docSlugs = getAllMdxCategories().map((doc) => doc.slug);
+
+  return {
+    props: {
+      docSlugs,
+    },
+  };
 };
 
 export default NotPound404;

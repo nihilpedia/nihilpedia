@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import { ISiteMetaProps } from '@/types';
-import { siteData } from '@/data/config.data';
+import { siteData } from '@/data';
 
 export const SiteMeta = ({ meta, }: ISiteMetaProps) => {
   const {

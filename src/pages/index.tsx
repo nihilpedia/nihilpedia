@@ -4,12 +4,15 @@ import { GetStaticProps } from 'next';
 import { MDXRemote } from 'next-mdx-remote';
 import AppLayout from '@/layouts/AppLayout';
 import { useSiteMeta } from '@/hooks';
-import { getMdx } from '@/utils/mdx';
+import { getAllMdxCategories, getMdx } from '@/utils/mdx';
 import { IPage } from '@/types';
 import { DocBox, MdxComponents } from '@/components/Content';
-import { getTimeString } from '@/utils';
 
-const IndexPage = ({ source, frontMatter, }: IPage) => {
+interface IIndexPage extends IPage {
+  docSlugs: string[];
+}
+
+const IndexPage = ({ source, frontMatter, docSlugs, }: IIndexPage) => {
   const IndexPageStyle = css`
     margin-bottom: 10px;
   `;
@@ -19,18 +22,11 @@ const IndexPage = ({ source, frontMatter, }: IPage) => {
     url: '/',
   });
 
-  const updateTime = getTimeString(frontMatter.updatedAt as number);
-
   return (
     <>
-      <AppLayout meta={meta}>
+      <AppLayout meta={meta} docSlugs={docSlugs}>
         <div id='index-page' css={IndexPageStyle}>
-          <DocBox
-            title={frontMatter.title}
-            updateTime={updateTime}
-            mt={10}
-            mb={10}
-          >
+          <DocBox frontMatter={frontMatter}>
             <MDXRemote {...source} components={MdxComponents} />
           </DocBox>
         </div>
@@ -41,10 +37,12 @@ const IndexPage = ({ source, frontMatter, }: IPage) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   const doc = await getMdx('니힐라 위키');
+  const docSlugs = getAllMdxCategories().map((doc) => doc.slug);
 
   return {
     props: {
       ...doc,
+      docSlugs,
     },
   };
 };

@@ -6,7 +6,7 @@ import { getAllMdxCategories } from '@/utils/mdx';
 import { IRecentPage } from '@/types';
 import { RecentBox } from '@/components/Content';
 
-const RecentPage = ({ docs, }: IRecentPage) => {
+const RecentPage = ({ docs, docSlugs, }: IRecentPage) => {
   const RecentPageStyle = css`
     margin-bottom: 10px;
   `;
@@ -18,7 +18,7 @@ const RecentPage = ({ docs, }: IRecentPage) => {
 
   return (
     <>
-      <AppLayout meta={meta}>
+      <AppLayout meta={meta} docSlugs={docSlugs}>
         <div id='recent-docs-page' css={RecentPageStyle}>
           <RecentBox docs={docs} mt={10} mb={10} />
         </div>
@@ -33,6 +33,7 @@ export const getStaticProps = async () => {
   return {
     props: {
       docs: docs.splice(0, 50),
+      docSlugs: docs.map((doc) => doc.slug),
     },
   };
 };

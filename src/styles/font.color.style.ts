@@ -1,9 +1,9 @@
 export const fontColorStyle = {
   blue: '#3f91ff',
-  blue2: '#3c78d8',
-  blue3: '#2354a3',
+  blue2: '#266cdc',
+  blue3: '#1052bc',
   red: '#df2323',
-  red2: '#b20808',
+  red2: '#990505',
   black: '#333333',
   black2: '#555555',
   green: '#11b32c',

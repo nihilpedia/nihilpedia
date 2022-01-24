@@ -3,12 +3,15 @@ import { css } from '@emotion/react';
 import { MDXRemote } from 'next-mdx-remote';
 import { useSiteMeta } from '@/hooks';
 import AppLayout from '@/layouts/AppLayout';
-import { getMdx } from '@/utils/mdx';
+import { getAllMdxCategories, getMdx } from '@/utils/mdx';
 import { IPage } from '@/types';
 import { DocBox, MdxComponents } from '@/components/Content';
-import { getTimeString } from '@/utils';
 
-const AboutPage = ({ source, frontMatter, }: IPage) => {
+interface IAboutPage extends IPage {
+  docSlugs: string[];
+}
+
+const AboutPage = ({ source, frontMatter, docSlugs, }: IAboutPage) => {
   const AboutPageStyle = css`
     margin-bottom: 10px;
   `;
@@ -18,18 +21,11 @@ const AboutPage = ({ source, frontMatter, }: IPage) => {
     url: '/about',
   });
 
-  const updateTime = getTimeString(frontMatter.updatedAt as number);
-
   return (
     <>
-      <AppLayout meta={meta}>
+      <AppLayout meta={meta} docSlugs={docSlugs}>
         <div id='about-page' css={AboutPageStyle}>
-          <DocBox
-            title={frontMatter.title}
-            updateTime={updateTime}
-            mt={10}
-            mb={10}
-          >
+          <DocBox frontMatter={frontMatter}>
             <MDXRemote {...source} components={MdxComponents} />
           </DocBox>
         </div>
@@ -40,10 +36,12 @@ const AboutPage = ({ source, frontMatter, }: IPage) => {
 
 export const getStaticProps = async () => {
   const doc = await getMdx('소개');
+  const docSlugs = getAllMdxCategories().map((doc) => doc.slug);
 
   return {
     props: {
       ...doc,
+      docSlugs,
     },
   };
 };

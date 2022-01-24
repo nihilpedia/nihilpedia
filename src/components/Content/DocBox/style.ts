@@ -1,47 +1,73 @@
 import { css } from '@emotion/react';
 import { fontColorStyle, fontSizeStyle } from '@/styles';
 
-export const style = (mt: number, mb: number) => {
-  return css`
-    & > .doc-box {
+export const DocBoxStyle = css`
+  & > .doc-box {
       background-color: #ffffff;
       padding: 20px;
       border: 1px solid #33333350;
       box-sizing: border-box;
 
       &.header {
-        margin-top: ${mt}px;
-        margin-bottom: ${mb}px;
-
-        & > #wiki-title {
-          font-weight: 900;
-          color: #333333;
-          letter-spacing: -1px;
-
-          & > span {
-            color: inherit;
-            font-weight: inherit;
-            font-size: 140%;
-          }
-
-          @media all and (min-width: 1024px) {
-            font-size: ${fontSizeStyle[6]};
-          }
-          @media all and (min-width: 768px) and (max-width: 1023px) {
-            font-size: ${fontSizeStyle[6]};
-          }
-          @media all and (min-width: 480px) and (max-width: 767px) {
-            font-size: ${fontSizeStyle[5]};
-          }
-          @media all and (max-width: 479px) {
-            font-size: ${fontSizeStyle[4]};
-          }
-        }
+        margin-top: 10px;
+        margin-bottom: 10px;
       }
 
       &.toc {
-        margin-top: ${mt}px;
-        margin-bottom: ${mb}px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+
+        & > #toc-title {
+          margin-bottom: 20px;
+          font-weight: 500;
+          letter-spacing: -1px;
+          color: #333333;
+        }
+
+        & > ul {
+          & li {
+            letter-spacing: -1px;
+            font-weight: 500;
+            margin: 2px 0;
+
+            & > a {
+              margin-right: 5px;
+            }
+
+            & > span {
+              color: #333333;
+            }
+
+            & ul {
+              margin-left: 20px;
+            }
+          }
+        }
+
+        @media all and (min-width: 1024px) {
+          & > #toc-title,
+          & li {
+            font-size: ${fontSizeStyle[3]};
+          }
+        }
+        @media all and (min-width: 768px) and (max-width: 1023px) {
+          & > #toc-title,
+          & li {
+            font-size: ${fontSizeStyle[3]};
+          }
+        }
+        @media all and (min-width: 480px) and (max-width: 767px) {
+          & > #toc-title,
+          & li {
+            font-size: ${fontSizeStyle[2]};
+          }
+        }
+        @media all and (max-width: 479px) {
+          & > #toc-title,
+          & li {
+            font-size: ${fontSizeStyle[2]};
+          }
+        }
       }
 
       &.content {
@@ -96,12 +122,9 @@ export const style = (mt: number, mb: number) => {
         }
       }
 
-      & > p {
-        & > .page-name {
-          font-weight: 900;
-          color: ${fontColorStyle.red};
-        }
+      & .page-name {
+        font-weight: 900;
+        color: ${fontColorStyle.red};
       }
     }
-  `;
-};
+`;

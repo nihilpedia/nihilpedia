@@ -13,34 +13,57 @@ export const A = ({
   href, children, type = 'page',
 }: IA) => {
   const [ typeStyle, setTypeStyle, ] = useState(css``);
-  const [ typeHref, setTypeHref, ] = useState('/');
+  const [ classString, setClassString, ] = useState('');
+  const [ docSlugs, ] = useState<string[]>(
+    typeof window !== 'undefined'
+      ? JSON.parse(window.localStorage.getItem('docSlugs'))
+      : []
+  );
+
+  useEffect(() => {
+    if (type === 'page') {
+      if (docSlugs.includes(decodeURI(href))) {
+        setClassString('blue-link');
+      } else {
+        setClassString('red-link');
+      }
+    }
+  }, [ type, ]);
 
   useEffect(() => {
     switch (type) {
       case 'toc':
-        setTypeHref(href);
         setTypeStyle(css`
           color: ${fontColorStyle.blue};
 
           &:hover {
-            color: ${fontColorStyle.blue3};
+            color: ${fontColorStyle.blue2};
             text-decoration: underline;
           }
         `);
         break;
       case 'page':
-        setTypeHref(`/page/${href}`);
         setTypeStyle(css`
-          color: ${fontColorStyle.blue};
+          &.blue-link {
+            color: ${fontColorStyle.blue};
 
-          &:hover {
-            color: ${fontColorStyle.blue3};
-            text-decoration: underline;
+            &:hover {
+              color: ${fontColorStyle.blue2};
+              text-decoration: underline;
+            }
+          }
+
+          &.red-link {
+            color: ${fontColorStyle.red};
+
+            &:hover {
+              color: ${fontColorStyle.red2};
+              text-decoration: underline;
+            }
           }
         `);
         break;
       case 'external':
-        setTypeHref(href);
         setTypeStyle(css`
           color: ${fontColorStyle.green};
           margin-right: 2px;
@@ -73,17 +96,15 @@ export const A = ({
   return (
     <>
       {type === 'page' && (
-        <Link href='/page/[slug]' as={typeHref} passHref>
-          <a css={LinkStyle}>{children}</a>
+        <Link href='/page/[name]' as={`/page/${href}`} passHref>
+          <a css={LinkStyle} className={classString}>{children}</a>
         </Link>
       )}
       {type === 'toc' && (
-        <Link href={typeHref} passHref>
-          <a css={LinkStyle}>{children}</a>
-        </Link>
+        <a href={href} css={LinkStyle}>{children}</a>
       )}
       {type === 'external' && (
-        <a href={typeHref} css={LinkStyle} target='_blank' rel='noopener noreferrer'>
+        <a href={href} css={LinkStyle} target='_blank' rel='noopener noreferrer'>
           {children}
         </a>
       )}

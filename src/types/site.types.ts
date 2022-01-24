@@ -12,9 +12,10 @@ export interface ISiteMeta {
 export interface ISiteMetaProps {
   children?: ReactNode;
   meta: ISiteMeta;
+  docSlugs?: string[];
 }
 
-export interface IHaveChildren {
+export interface IChildren {
   children: ReactNode;
 }
 
@@ -24,11 +25,6 @@ export interface IFrontMatter {
   tags: string[];
   createdAt: (Date | number);
   updatedAt: (Date | number)
-}
-
-export interface IBundleMdx {
-  frontmatter: IFrontMatter;
-  code: string;
 }
 
 export interface IAllPage {
@@ -44,6 +40,14 @@ export interface IPage {
 
 export interface IRecentPage {
   docs: IAllPage[];
+  docSlugs: string[];
+}
+
+export interface IH6 {
+  id: string;
+  text: string;
+  name: 'H6';
+  link: string;
 }
 
 export interface IH5 {
@@ -51,6 +55,7 @@ export interface IH5 {
   text: string;
   name: 'H5';
   link: string;
+  items?: IH6[];
 }
 
 export interface IH4 {

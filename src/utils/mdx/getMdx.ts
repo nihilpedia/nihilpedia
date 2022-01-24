@@ -5,7 +5,7 @@ import { IPage } from '@/types';
 
 export const getMdx = async (name: string): Promise<IPage> => {
   const docs = getAllMdxCategories().filter((doc) => {
-    return doc.slug === name.replace(' ', '_');
+    return doc.slug === name.replace(/[ ]/g, '_');
   });
 
   const {

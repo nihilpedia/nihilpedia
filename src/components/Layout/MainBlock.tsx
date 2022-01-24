@@ -1,8 +1,8 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import { IHaveChildren } from '@/types';
+import { IChildren } from '@/types';
 
-export const MainBlock = ({ children, }: IHaveChildren) => {
+export const MainBlock = ({ children, }: IChildren) => {
   const style = css``;
 
   return (

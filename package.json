@@ -27,7 +27,6 @@
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
-    "axios": "^0.25.0",
     "gray-matter": "^4.0.3",
     "next": "^12.0.7",
     "next-mdx-remote": "^3.0.8",
@@ -47,7 +46,6 @@
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.8.1",
     "@typescript-eslint/parser": "^5.8.1",
-    "esbuild": "^0.14.11",
     "eslint": "^8.5.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-next": "^12.0.7",

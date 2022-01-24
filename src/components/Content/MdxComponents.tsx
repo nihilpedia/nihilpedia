@@ -10,6 +10,7 @@ export const MdxComponents = {
   h2: (props) => (<H type='h3'>{props.children}</H>),
   h3: (props) => (<H type='h4'>{props.children}</H>),
   h4: (props) => (<H type='h5'>{props.children}</H>),
+  h5: (props) => (<H type='h6'>{props.children}</H>),
   p: (props) => (<P>{props.children}</P>),
   strong: (props) => (<Strong>{props.children}</Strong>),
   em: (props) => (<Em>{props.children}</Em>),
@@ -24,4 +25,5 @@ export const MdxComponents = {
   QBlock,
   Bold,
   Ul,
+  Image,
 };

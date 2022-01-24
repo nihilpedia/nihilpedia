@@ -7,9 +7,12 @@ import { IPage } from '@/types';
 import { useSiteMeta } from '@/hooks';
 import AppLayout from '@/layouts/AppLayout';
 import { DocBox, MdxComponents } from '@/components/Content';
-import { getTimeString } from '@/utils';
 
-const PageName = ({ source, frontMatter, }: IPage) => {
+interface IPageName extends IPage {
+  docSlugs: string[];
+}
+
+const PageName = ({ source, frontMatter, docSlugs, }: IPageName) => {
   const PageNameStyle = css`
     margin-bottom: 10px;
   `;
@@ -19,13 +22,11 @@ const PageName = ({ source, frontMatter, }: IPage) => {
     url: `/page/${frontMatter.title}`,
   });
 
-  const updateTime = getTimeString(frontMatter.updatedAt as number);
-
   return (
     <>
-      <AppLayout meta={meta}>
+      <AppLayout meta={meta} docSlugs={docSlugs}>
         <div id='doc-page' css={PageNameStyle}>
-          <DocBox title={frontMatter.title} updateTime={updateTime} mt={10} mb={10}>
+          <DocBox frontMatter={frontMatter}>
             <MDXRemote {...source} components={MdxComponents} />
           </DocBox>
         </div>
@@ -55,10 +56,12 @@ export const getStaticProps: GetStaticProps = async ({ params, }: Params) => {
   const { name, } = params;
 
   const doc = await getMdx(name);
+  const docSlugs = getAllMdxCategories().map((doc) => doc.slug);
 
   return {
     props: {
       ...doc,
+      docSlugs,
     },
   };
 };

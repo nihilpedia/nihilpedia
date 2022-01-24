@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { css, jsx } from '@emotion/react';
-import { FaLink } from 'react-icons/fa';
 import { fontColorStyle, fontSizeStyle } from '@/styles';
 
 interface IH {
   children: React.ReactNode;
   mt?: number;
   mb?: number;
-  type: ('h2' | 'h3' | 'h4' | 'h5');
+  type: ('h2' | 'h3' | 'h4' | 'h5' | 'h6');
 }
 
 export const H = ({
@@ -43,7 +42,7 @@ export const H = ({
 
           & > span,
           & > a {
-            font-size: 100%;
+            font-size: 110%;
           }
         `);
         break;
@@ -53,7 +52,17 @@ export const H = ({
 
           & > span,
           & > a {
-            font-size: 80%;
+            font-size: 100%;
+          }
+        `);
+        break;
+      case 'h6':
+        setStyle(css`
+          font-weight: 900;
+
+          & > span,
+          & > a {
+            font-size: 90%;
           }
         `);
         break;
@@ -72,18 +81,17 @@ export const H = ({
     align-items: center;
     justify-content: flex-start;
     color: ${fontColorStyle.black};
+    padding-bottom: 10px;
+    border-bottom: 1px solid #33333350;
     ${style};
 
-    & > a {
-      color: ${fontColorStyle.blue2}50;
-
-      & > svg {
-        font-size: 70%;
-        margin-left: 10px;
-      }
+    & > .header-index {
+      color: ${fontColorStyle.blue};
+      margin-right: 5px;
 
       &:hover {
         color: ${fontColorStyle.blue2};
+        text-decoration: underline;
       }
     }
 
@@ -103,15 +111,15 @@ export const H = ({
 
   const content = (
     <>
+      <a className='header-index' href='#wiki-title' aria-label='top' />
       <span>{children}</span>
-      <a href='#wiki-title' aria-label='top'><FaLink /></a>
     </>
   );
 
   return jsx(
     type,
     {
-      className: 'wiki-heading',
+      className: `wiki-heading ${type}`,
       css: HStyle,
     },
     content

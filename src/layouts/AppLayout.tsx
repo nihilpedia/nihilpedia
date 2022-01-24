@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { css, Global } from '@emotion/react';
 import { SiteMeta } from '@/components';
 import { ISiteMetaProps } from '@/types';
@@ -6,7 +6,11 @@ import {
   FooterBlock, HeaderBlock, MainBlock
 } from '@/components/Layout';
 
-const AppLayout = ({ children, meta, }: ISiteMetaProps) => {
+const AppLayout = ({ children, meta, docSlugs, }: ISiteMetaProps) => {
+  useEffect(() => {
+    localStorage.setItem('docSlugs', JSON.stringify(docSlugs));
+  }, []);
+
   const style = css`
     @import url(https://fonts.googleapis.com/earlyaccess/notosanskr.css);
 

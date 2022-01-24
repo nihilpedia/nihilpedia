@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import { AppProps } from 'next/app';
-import { siteData } from '@/data/config.data';
+import { siteData } from '@/data';
 
 const App = ({ Component, pageProps, }: AppProps) => (
   <>

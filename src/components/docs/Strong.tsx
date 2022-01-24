@@ -1,5 +1,6 @@
 import React from 'react';
 import { css } from '@emotion/react';
+import { fontColorStyle } from '@/styles';
 
 interface IStrong {
   children: React.ReactNode;
@@ -8,7 +9,7 @@ interface IStrong {
 export const Strong = ({ children, }: IStrong) => {
   const StrongStyle = css`
     font-weight: 900;
-    color: inherit;
+    color: ${fontColorStyle.blue3};
   `;
 
   return (
