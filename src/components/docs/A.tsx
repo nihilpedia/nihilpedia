@@ -22,7 +22,16 @@ export const A = ({
 
   useEffect(() => {
     if (type === 'page') {
-      if (docSlugs.includes(decodeURI(href))) {
+      const hrefArray = decodeURI(href).split('#toc');
+      let withOutToc: string;
+
+      if (hrefArray.length > 1) {
+        [ withOutToc, ] = hrefArray;
+      } else {
+        [ withOutToc, ] = hrefArray;
+      }
+
+      if (docSlugs.includes(withOutToc)) {
         setClassString('blue-link');
       } else {
         setClassString('red-link');
