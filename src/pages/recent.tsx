@@ -29,11 +29,12 @@ const RecentPage = ({ docs, docSlugs, }: IRecentPage) => {
 
 export const getStaticProps = async () => {
   const docs = getAllMdxCategories();
+  const docSlugs = docs.map((doc) => doc.slug);
 
   return {
     props: {
       docs: docs.splice(0, 50),
-      docSlugs: docs.map((doc) => doc.slug),
+      docSlugs,
     },
   };
 };

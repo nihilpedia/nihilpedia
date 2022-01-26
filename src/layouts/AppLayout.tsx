@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { css, Global } from '@emotion/react';
+import { useRouter } from 'next/router';
 import { SiteMeta } from '@/components';
 import { ISiteMetaProps } from '@/types';
 import {
@@ -7,9 +8,11 @@ import {
 } from '@/components/Layout';
 
 const AppLayout = ({ children, meta, docSlugs, }: ISiteMetaProps) => {
+  const router = useRouter();
+
   useEffect(() => {
     localStorage.setItem('docSlugs', JSON.stringify(docSlugs));
-  }, []);
+  }, [ router.asPath, ]);
 
   const style = css`
     @import url(https://fonts.googleapis.com/earlyaccess/notosanskr.css);

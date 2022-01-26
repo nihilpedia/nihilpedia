@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { IFrontMatter, IH2 } from '@/types';
 import { generateToc, getTimeString } from '@/utils';
 import { DocTitle, Toc } from '@/components/Content';
-import { P } from '@/components/docs';
+import { A, P } from '@/components/docs';
 import { DocBoxStyle } from './style';
 
 interface IDocBox {
@@ -46,7 +46,16 @@ export const DocBox = ({ children, frontMatter, error = false, }: IDocBox) => {
               : (
                 <>
                   <DocTitle>{frontMatter?.title}</DocTitle>
-                  <P mt={10} mb={0}>분류: {category}</P>
+                  <P mt={10} mb={0}>
+                    {'분류: '}
+                    {
+                      category === '없음'
+                        ? category
+                        : (
+                          <A href={category.join('').replace(/[ ]/g, '_')}>{category}</A>
+                        )
+                    }
+                  </P>
                 </>
               )
           }
