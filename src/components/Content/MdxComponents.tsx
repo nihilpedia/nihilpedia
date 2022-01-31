@@ -2,7 +2,7 @@ import React from 'react';
 import {
   A,
   Bold,
-  Em, H, Image, P, QBlock, Strong, Ul
+  Em, FB, FT, H, Image, P, QBlock, Strong, Ul
 } from '../docs';
 
 export const MdxComponents = {
@@ -26,4 +26,6 @@ export const MdxComponents = {
   Bold,
   Ul,
   Image,
+  FT,
+  FB,
 };
