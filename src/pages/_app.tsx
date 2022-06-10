@@ -15,11 +15,6 @@ const App = ({ Component, pageProps, }: AppProps) => (
 
       <link rel='shortcut icon' type='image/x-icon' href={`${siteData.siteUrl}/favicon.ico`} />
       <link rel='icon' type='image/x-icon' href={`${siteData.siteUrl}/favicon.ico`} />
-
-      <link
-        rel='stylesheet'
-        href='https://use.fontawesome.com/releases/v5.15.4/css/all.css'
-      />
     </Head>
     <Component {...pageProps} />
   </>
