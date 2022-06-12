@@ -4,8 +4,9 @@ import { getAllMdxCategories } from '@/utils/mdx';
 import { IPage } from '@/types';
 
 export const getMdx = async (name: string): Promise<IPage> => {
-  const docs = getAllMdxCategories().filter((doc) => {
-    return doc.slug === name.replace(/[ ]/g, '_');
+  let { docs, } = getAllMdxCategories();
+  docs = docs.filter((doc) => {
+    return doc.slug === name.replace(/ /g, '_');
   });
 
   const {

@@ -1,17 +1,86 @@
 import React from 'react';
+import { css } from '@emotion/react';
 import { v4 as uuid } from 'uuid';
 import { IH2 } from '@/types';
 import { TocLi } from '@/components/Content';
+import { fontSizeStyle } from '@/styles';
 
 interface IToc {
   toc: IH2[];
 }
 
 export const Toc = ({ toc, }: IToc) => {
+  const TocTitleStyle = css`
+    margin-bottom: 20px;
+    font-weight: 900;
+    letter-spacing: -1px;
+    color: #333333;
+
+    & > span {
+      font-size: 140%;
+    }
+
+    @media all and (min-width: 1024px) {
+      font-size: ${fontSizeStyle[6]};
+    }
+    @media all and (min-width: 768px) and (max-width: 1023px) {
+      font-size: ${fontSizeStyle[6]};
+    }
+    @media all and (min-width: 480px) and (max-width: 767px) {
+      font-size: ${fontSizeStyle[5]};
+    }
+    @media all and (max-width: 479px) {
+      font-size: ${fontSizeStyle[4]};
+    }
+  `;
+
+  const TocStyle = css`
+    & li {
+      letter-spacing: -1px;
+      font-weight: 500;
+      margin: 2px 0;
+
+      & > a {
+        margin-right: 5px;
+      }
+
+      & > span {
+        color: #333333;
+      }
+
+      & ul {
+        margin-left: 20px;
+      }
+    }
+
+    @media all and (min-width: 1024px) {
+      & li {
+        font-size: ${fontSizeStyle[3]};
+      }
+    }
+    @media all and (min-width: 768px) and (max-width: 1023px) {
+      & li {
+        font-size: ${fontSizeStyle[3]};
+      }
+    }
+    @media all and (min-width: 480px) and (max-width: 767px) {
+      & li {
+        font-size: ${fontSizeStyle[2]};
+      }
+    }
+    @media all and (max-width: 479px) {
+      & li {
+        font-size: ${fontSizeStyle[2]};
+      }
+    }
+  `;
+
   return (
     <>
-      <p id='toc-title'>목차</p>
-      <ul>
+      <p id='toc-title' css={TocTitleStyle}>
+        <span>목차</span>
+      </p>
+      <ul css={TocStyle}>
         {toc.map((item1, index1) => {
           const h2Index = `${index1 + 1}.`;
           return (

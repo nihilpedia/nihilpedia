@@ -37,9 +37,9 @@ const PageName = ({ source, frontMatter, docSlugs, }: IPageName) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: getAllMdxCategories().map(({ slug, }) => ({
+    paths: getAllMdxCategories().docs.map(({ slug, }) => ({
       params: {
-        name: slug,
+        doc: slug,
       },
     })),
     fallback: false,
@@ -48,20 +48,20 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 type Params = {
   params: {
-    name: string;
+    doc: string;
   }
 };
 
 export const getStaticProps: GetStaticProps = async ({ params, }: Params) => {
-  const { name, } = params;
+  const { doc: docName, } = params;
 
-  const doc = await getMdx(name);
-  const docSlugs = getAllMdxCategories().map((doc) => doc.slug);
+  const doc = await getMdx(docName);
+  const { slugs, } = getAllMdxCategories();
 
   return {
     props: {
       ...doc,
-      docSlugs,
+      docSlugs: slugs,
     },
   };
 };

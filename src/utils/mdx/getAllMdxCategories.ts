@@ -24,5 +24,8 @@ export const getAllMdxCategories = () => {
     return afterDate - beforeDate;
   });
 
-  return docs;
+  return {
+    docs,
+    slugs: docs.map((doc) => doc.slug),
+  };
 };

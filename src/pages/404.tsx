@@ -34,11 +34,11 @@ const NotPound404 = ({ docSlugs, }: INotPoundPage) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const docSlugs = getAllMdxCategories().map((doc) => doc.slug);
+  const { slugs, } = getAllMdxCategories();
 
   return {
     props: {
-      docSlugs,
+      docSlugs: slugs,
     },
   };
 };

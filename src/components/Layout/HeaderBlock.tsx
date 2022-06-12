@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { FaHome, FaInfoCircle } from 'react-icons/fa';
 import { IoMdTime } from 'react-icons/io';
 import { fontSizeStyle } from '@/styles';
+import { siteData } from '@/data';
 
 export const HeaderBlock = () => {
   const HeaderBlockStyle = css`
@@ -12,7 +13,7 @@ export const HeaderBlock = () => {
 
     & > div {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       line-height: 1;
@@ -21,17 +22,33 @@ export const HeaderBlock = () => {
       margin-bottom: 10px;
       letter-spacing: -1px;
 
-      & > img {
-        margin-right: 5px;
-        width: 40px;
-        height: 40px;
-        display: block;
+      & > div.header-image {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+
+        & > img {
+          margin-right: 5px;
+          width: 40px;
+          height: 40px;
+          display: block;
+        }
+
+        & > span {
+          font-weight: 900;
+          font-size: 120%;
+          color: #ffffff;
+        }
       }
 
-      & > span {
-        font-weight: 900;
-        font-size: 120%;
-        color: #ffffff;
+      & > div.version {
+        & > p {
+          color: #ffffff;
+          font-size: 70%;
+          font-weight: 500;
+        }
       }
 
       @media all and (min-width: 1024px) {
@@ -94,8 +111,13 @@ export const HeaderBlock = () => {
     <>
       <header css={HeaderBlockStyle}>
         <div>
-          <img src='/images/nihil-logo.svg' alt='니힐 로고' />
-          <span>니힐라 위키</span>
+          <div className='header-image'>
+            <img src='/images/nihil-logo.svg' alt='니힐 로고' />
+            <span>니힐라 위키</span>
+          </div>
+          <div className='version'>
+            <p>버전 {siteData.siteVersion}</p>
+          </div>
         </div>
         <nav>
           <Link href='/' passHref>

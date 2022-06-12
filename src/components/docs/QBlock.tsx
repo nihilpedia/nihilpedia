@@ -27,6 +27,11 @@ export const QBlock = ({
           color: #333333;
           margin: 10px 0;
           line-height: 1.5;
+          text-indent: 0;
+
+          & > strong {
+            color: ${fontColorStyle.blue2};
+          }
 
           &:nth-of-type(1) {
             margin-top: 0;

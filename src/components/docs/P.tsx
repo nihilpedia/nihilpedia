@@ -17,6 +17,7 @@ export const P = ({ children, mt = 20, mb = 20, }: IP) => {
     letter-spacing: -1px;
     line-height: 1.5;
     color: #333333;
+    text-indent: 15px;
 
     @media all and (min-width: 1024px) {
       font-size: ${fontSizeStyle[3]};

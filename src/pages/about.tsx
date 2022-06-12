@@ -36,12 +36,12 @@ const AboutPage = ({ source, frontMatter, docSlugs, }: IAboutPage) => {
 
 export const getStaticProps = async () => {
   const doc = await getMdx('소개');
-  const docSlugs = getAllMdxCategories().map((doc) => doc.slug);
+  const { slugs, } = getAllMdxCategories();
 
   return {
     props: {
       ...doc,
-      docSlugs,
+      docSlugs: slugs,
     },
   };
 };

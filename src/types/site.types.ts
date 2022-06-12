@@ -21,7 +21,7 @@ export interface IChildren {
 
 export interface IFrontMatter {
   title: string;
-  categories: string[];
+  categories: string;
   tags: string[];
   createdAt: (Date | number);
   updatedAt: (Date | number)

@@ -9,7 +9,7 @@ interface IStrong {
 export const Strong = ({ children, }: IStrong) => {
   const StrongStyle = css`
     font-weight: 900;
-    color: ${fontColorStyle.blue3};
+    color: ${fontColorStyle.black};
   `;
 
   return (

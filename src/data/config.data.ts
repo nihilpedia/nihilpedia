@@ -9,5 +9,5 @@ export const siteData: IConfig = {
     ? 'http://localhost:3000'
     : 'https://nihilpedia.github.io',
   siteImage: '/images/site-image.png',
-  siteVersion: 'v1.0.0',
+  siteVersion: 'v1.1.0',
 };

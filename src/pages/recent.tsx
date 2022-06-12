@@ -20,7 +20,7 @@ const RecentPage = ({ docs, docSlugs, }: IRecentPage) => {
     <>
       <AppLayout meta={meta} docSlugs={docSlugs}>
         <div id='recent-docs-page' css={RecentPageStyle}>
-          <RecentBox docs={docs} mt={10} mb={10} />
+          <RecentBox docs={docs} />
         </div>
       </AppLayout>
     </>
@@ -28,13 +28,13 @@ const RecentPage = ({ docs, docSlugs, }: IRecentPage) => {
 };
 
 export const getStaticProps = async () => {
-  const docs = getAllMdxCategories();
-  const docSlugs = docs.map((doc) => doc.slug);
+  const { docs, } = getAllMdxCategories();
+  const { slugs, } = getAllMdxCategories();
 
   return {
     props: {
       docs: docs.splice(0, 50),
-      docSlugs,
+      docSlugs: slugs,
     },
   };
 };

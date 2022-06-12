@@ -11,7 +11,7 @@ export const getAllMdx = (category: string): IAllPage[] => {
     const source = readFileSync(join(folderPath, file), 'utf8');
     const slug = file
       .replace(/\.mdx$/, '')
-      .replace(/[ ]/g, '_');
+      .replace(/ /g, '_');
     const { data, content, } = matter(source);
 
     const frontMatter: IFrontMatter = {

@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   A,
-  Bold,
   Em, FB, FT, H, Image, P, QBlock, Strong, Ul
 } from '../docs';
 
@@ -23,7 +22,6 @@ export const MdxComponents = {
   Em,
   A,
   QBlock,
-  Bold,
   Ul,
   Image,
   FT,
