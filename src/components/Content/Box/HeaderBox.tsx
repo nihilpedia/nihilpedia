@@ -29,7 +29,7 @@ export const HeaderBox = ({ children, error, category, }: IHeaderBox) => {
         {error === false && (
           <>
             <DocTitle>{children}</DocTitle>
-            <P mt={10} mb={0}>
+            <P mt={10} mb={0} indent={0}>
               {'분류: '}
               {
                 category === '없음'

@@ -30,13 +30,13 @@ export const ErrorBox = () => {
       {
         isDocs
           ? (
-            <P mt={0} mb={0}>
+            <P mt={0} mb={0} indent={0}>
               <span css={notPageStyle}>{pageName}</span> 페이지가 존재하지 않습니다.&nbsp;
               <HomeLink>홈</HomeLink>으로 돌아가세요.
             </P>
           )
           : (
-            <P mt={0} mb={0}>
+            <P mt={0} mb={0} indent={0}>
               페이지가 존재하지 않습니다.
             </P>
           )

@@ -6,9 +6,12 @@ interface IP {
   children: React.ReactNode;
   mt?: number;
   mb?: number;
+  indent?: number;
 }
 
-export const P = ({ children, mt = 20, mb = 20, }: IP) => {
+export const P = ({
+  children, mt = 20, mb = 20, indent = 15,
+}: IP) => {
   const PStyle = css`
     margin-top: ${mt}px;
     margin-bottom: ${mb}px;
@@ -17,7 +20,7 @@ export const P = ({ children, mt = 20, mb = 20, }: IP) => {
     letter-spacing: -1px;
     line-height: 1.5;
     color: #333333;
-    text-indent: 15px;
+    text-indent: ${indent}px;
 
     @media all and (min-width: 1024px) {
       font-size: ${fontSizeStyle[3]};
