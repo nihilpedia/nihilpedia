@@ -10,12 +10,9 @@ import { DocBox, MdxComponents } from '@/components/Content';
 
 interface IIndexPage extends IPage {
   docSlugs: string[];
-  categories: string[];
 }
 
-const IndexPage = ({
-  source, frontMatter, docSlugs, categories,
-}: IIndexPage) => {
+const IndexPage = ({ source, frontMatter, docSlugs, }: IIndexPage) => {
   const IndexPageStyle = css`
     margin-bottom: 10px;
   `;
@@ -42,17 +39,10 @@ export const getStaticProps: GetStaticProps = async () => {
   const doc = await getMdx('니힐라 위키');
   const { slugs, } = getAllMdxCategories();
 
-  const categoriesSet = new Set(getAllMdxCategories().docs
-    .map((doc) => doc.frontMatter.categories)
-    .filter((category) => category !== ''));
-
-  const categories = Array.from(categoriesSet);
-
   return {
     props: {
       ...doc,
       docSlugs: slugs,
-      categories,
     },
   };
 };
