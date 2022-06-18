@@ -7,10 +7,11 @@ interface IH {
   mt?: number;
   mb?: number;
   type: ('h2' | 'h3' | 'h4' | 'h5' | 'h6');
+  name?: string;
 }
 
 export const H = ({
-  children, type, mt = 40, mb = 40,
+  children, type, mt = 40, mb = 40, name,
 }: IH): React.ReactElement => {
   const [ style, setStyle, ] = useState(css``);
 
@@ -112,7 +113,11 @@ export const H = ({
   const content = (
     <>
       <a className='header-index' href='#wiki-title' aria-label='top' />
-      <span>{children}</span>
+      {
+        name !== undefined
+          ? <span id={name}>{children}</span>
+          : <span>{children}</span>
+      }
     </>
   );
 

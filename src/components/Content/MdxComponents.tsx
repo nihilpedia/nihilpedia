@@ -26,4 +26,5 @@ export const MdxComponents = {
   Image,
   FT,
   FB,
+  H,
 };

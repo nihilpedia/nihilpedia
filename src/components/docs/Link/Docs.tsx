@@ -12,21 +12,16 @@ interface IDocsLink {
 export const DocsLink = ({ children, href, docSlugs, }: IDocsLink) => {
   const [ classString, setClassString, ] = useState('');
 
+  const hrefString = decodeURI(href).split('#toc')[0];
+  const removeInLink = hrefString.split('#')[0];
+  const getInLink = hrefString.split('#')[1];
+
   useEffect(() => {
-    const hrefArray = decodeURI(href).split('#toc');
-    let withOutToc: string;
-
-    if (hrefArray.length > 1) {
-      [ withOutToc, ] = hrefArray;
-    } else {
-      [ withOutToc, ] = hrefArray;
-    }
-
     if (docSlugs === null) {
       setClassString('blue-link');
     } else {
       // eslint-disable-next-line no-lonely-if
-      if (docSlugs.includes(withOutToc)) {
+      if (docSlugs.includes(removeInLink)) {
         setClassString('blue-link');
       } else {
         setClassString('red-link');
@@ -60,7 +55,14 @@ export const DocsLink = ({ children, href, docSlugs, }: IDocsLink) => {
 
   return (
     <>
-      <Link href='/page/[doc]' as={`/page/${href}`} passHref>
+      <Link
+        href={{
+          pathname: '/page/[doc]',
+          query: { name: getInLink, },
+        }}
+        as={`/page/${href}`}
+        passHref
+      >
         <a css={DocsLinkStyle} className={classString}>{children}</a>
       </Link>
     </>

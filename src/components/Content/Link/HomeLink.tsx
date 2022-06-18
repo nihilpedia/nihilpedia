@@ -19,7 +19,7 @@ export const HomeLink = ({ children, }: IHomeLink) => {
 
   return (
     <>
-      <Link href='/src/pages' passHref>
+      <Link href='/' passHref>
         <a css={HomeLinkStyle}>{children}</a>
       </Link>
     </>

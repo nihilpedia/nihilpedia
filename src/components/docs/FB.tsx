@@ -21,7 +21,7 @@ export const FB = ({ number, children, }: IFB) => {
       margin-bottom: 0;
     }
 
-    & > a {
+    & > a.number {
       font-weight: 900;
       color: ${fontColorStyle.blue};
       margin-right: 10px;
@@ -60,7 +60,7 @@ export const FB = ({ number, children, }: IFB) => {
         <hr css={LineStyle} />
       )}
       <p id={`fb-${number}`} className='fb' css={FBStyle}>
-        <a href={`#ft-${number}`}>[{number}]</a>
+        <a href={`#ft-${number}`} className='number'>[{number}]</a>
         {children}
       </p>
     </>

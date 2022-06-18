@@ -10,3 +10,4 @@ export * from './Box/CategoryBox';
 export * from './Box';
 export * from './Box/HeaderBox';
 export * from './Box/ContentBox';
+export * from './Box/MessageBox';

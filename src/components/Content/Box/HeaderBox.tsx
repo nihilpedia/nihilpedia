@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box } from '@/components/Content/Box';
 import { DocTitle } from '@/components/Content';
 import { Category, P } from '@/components/docs';
@@ -10,13 +10,11 @@ interface IHeaderBox {
 }
 
 export const HeaderBox = ({ children, error, category, }: IHeaderBox) => {
-  // eslint-disable-next-line no-underscore-dangle
-  let _category: string;
+  const [ categoryLink, setCategoryLink, ] = useState('');
 
   useEffect(() => {
-    // eslint-disable-next-line no-underscore-dangle
     if (!error) {
-      _category = category.replace(/ /g, '_');
+      setCategoryLink(category.replace(/ /g, '_'));
     }
   }, [ category, ]);
 
@@ -35,7 +33,7 @@ export const HeaderBox = ({ children, error, category, }: IHeaderBox) => {
                 category === '없음'
                   ? category
                   : (
-                    <Category category={_category}>{category}</Category>
+                    <Category category={categoryLink}>{category}</Category>
                   )
               }
             </P>

@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
-import { DocsLink } from '@/components/docs/Link/Docs';
-import { ExternalLink } from '@/components/docs/Link/External';
-import { TocLink } from '@/components/docs/Link/Toc';
+import { DocsLink } from './Docs';
+import { ExternalLink } from './External';
+import { TocLink } from './Toc';
 
 interface IA {
   href: string;
   children: React.ReactNode;
-  type?: ('page' | 'external' | 'toc')
+  type?: ('page' | 'external' | 'toc' | 'in')
 }
 
-export const A = ({
-  href, children, type = 'page',
-}: IA) => {
+export const A = ({ href, children, type = 'page', }: IA) => {
   const [ docSlugs, ] = useState<string[]>(
     typeof window !== 'undefined'
       ? JSON.parse(window.localStorage.getItem('docSlugs'))
